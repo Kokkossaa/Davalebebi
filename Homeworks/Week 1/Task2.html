@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<script>
+  function addNumbers(number1, number2) {
+    
+    if (typeof number1 !== 'number' || typeof number2 !== 'number') {
+    return "Invalid input. Please provide valid numeric parameters.";
+    }
+    var total = number1 + number2;
+    return total;
+  }
+  
+  var result = addNumbers(5, 7);
+  console.log(result); 
+
+  
+  var invalidResult = addNumbers("Hello", 7);
+  console.log(invalidResult); 
+</script>
+
+</body>
+</html>

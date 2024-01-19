@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Day Generator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<button id="generateButton" onclick="generateRandomDay()">Generate Random Day</button>
+<p id="result"></p>
+
+<script>
+    function getRandomDay() {
+        var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ];
+        var randomIndex = Math.floor(Math.random() * daysOfWeek.length);
+        return daysOfWeek[randomIndex];
+    }
+
+    function generateRandomDay() {
+        var randomDay = getRandomDay();
+        
+        document.getElementById("result").innerText = "Random Day: " + randomDay;
+    }
+</script>
+
+</body>
+</html>

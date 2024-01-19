@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<script>
+  function countCharacterA(inputString) {
+    if (typeof inputString !== 'string') {
+      return "Invalid input. Please provide a valid string.";
+    }
+
+    var matches = inputString.match(/a/gi); 
+
+    return matches ? matches.length : 0;
+  }
+
+  var count = countCharacterA("JavaScript is awesome!");
+  console.log(count); 
+  var invalidCount = countCharacterA(123);
+  console.log(invalidCount); 
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .custom-text {
+      display: inline-block;
+      transform: skewY(-10deg); 
+      text-decoration: underline; 
+      color: darkslategray; 
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function stylizeText(text) {
+    var spanElement = document.createElement("span");
+    spanElement.textContent = text;
+    spanElement.classList.add("custom-text");
+    document.body.appendChild(spanElement);
+  }
+
+  stylizeText("Hello, this is stylized text!");
+</script>
+
+</body>
+</html>

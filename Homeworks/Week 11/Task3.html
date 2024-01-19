@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <form id="addBookForm">
+        <label for="title">Title of the Book:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="pages">Number of Pages:</label>
+        <input type="number" id="pages" name="pages" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+
+        <label for="circulation">Circulation (Number of Books):</label>
+        <input type="number" id="circulation" name="circulation" required>
+
+        <button type="button" onclick="addBook()">Add Book</button>
+    </form>
+
+    <script>
+        function addBook() {
+            const title = document.getElementById('title').value;
+            const pages = document.getElementById('pages').value;
+            const author = document.getElementById('author').value;
+            const price = document.getElementById('price').value;
+            const circulation = document.getElementById('circulation').value;
+
+            console.log('Book Details:');
+            console.log('Title:', title);
+            console.log('Number of Pages:', pages);
+            console.log('Author:', author);
+            console.log('Price:', price);
+            console.log('Circulation:', circulation);
+
+            document.getElementById('addBookForm').reset();
+        }
+    </script>
+</body>
+</html>

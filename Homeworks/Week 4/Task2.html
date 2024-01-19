@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows-like Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+    }
+
+    #calculator {
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    button {
+      width: 48px;
+      height: 48px;
+      font-size: 18px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: #dcdcdc;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button.operator {
+      background-color: #dcdcdc;
+    }
+
+    button.equal {
+      background-color: #dcdcdc;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <input type="text" id="display" disabled>
+    <br>
+
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button class="operator" onclick="setOperation('/')">/</button>
+    <br>
+
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button class="operator" onclick="setOperation('*')">*</button>
+    <br>
+
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button class="operator" onclick="setOperation('-')">-</button>
+    <br>
+
+    <button onclick="appendNumber('0')">0</button>
+    <button onclick="appendDecimal()">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+    <button class="operator" onclick="setOperation('+')">+</button>
+  </div>
+
+  <script>
+    let currentInput = '';
+    let currentOperation = null;
+    let previousInput = null;
+
+    function clearDisplay() {
+      currentInput = '';
+      updateDisplay();
+    }
+
+    function appendNumber(number) {
+      currentInput += number;
+      updateDisplay();
+    }
+
+    function appendDecimal() {
+      if (!currentInput.includes('.')) {
+        currentInput += '.';
+        updateDisplay();
+      }
+    }
+
+    function setOperation(operation) {
+      if (currentInput !== '') {
+        calculate();
+        previousInput = currentInput;
+        currentInput = '';
+      }
+      currentOperation = operation;
+    }
+
+    function calculate() {
+      if (previousInput !== null && currentInput !== '') {
+        switch (currentOperation) {
+          case '+':
+            currentInput = String(parseFloat(previousInput) + parseFloat(currentInput));
+            break;
+          case '-':
+            currentInput = String(parseFloat(previousInput) - parseFloat(currentInput));
+            break;
+          case '*':
+            currentInput = String(parseFloat(previousInput) * parseFloat(currentInput));
+            break;
+          case '/':
+            currentInput = String(parseFloat(previousInput) / parseFloat(currentInput));
+            break;
+        }
+        currentOperation = null;
+        previousInput = null;
+        updateDisplay();
+      }
+    }
+
+    function updateDisplay() {
+      document.getElementById('display').value = currentInput;
+    }
+  </script>
+</body>
+</html>

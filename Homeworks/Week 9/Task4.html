@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #container {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            margin: 10vh auto;
+            background-color: #ccc;
+        }
+
+        #square {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            display: none;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="square"></div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const square = document.getElementById('square');
+
+        square.style.left = '0';
+        square.style.top = '0';
+        square.style.display = 'block';
+
+        function moveSquareByKey(e) {
+            const step = 360; 
+
+            const currentLeft = parseInt(square.style.left) || 0;
+            const currentTop = parseInt(square.style.top) || 0;
+
+            switch (e.key) {
+                case 'ArrowUp':
+                    square.style.top = `${Math.max(0, currentTop - step)}px`;
+                    break;
+                case 'ArrowDown':
+                    square.style.top = `${Math.min(container.clientHeight - square.clientHeight, currentTop + step)}px`;
+                    break;
+                case 'ArrowLeft':
+                    square.style.left = `${Math.max(0, currentLeft - step)}px`;
+                    break;
+                case 'ArrowRight':
+                    square.style.left = `${Math.min(container.clientWidth - square.clientWidth, currentLeft + step)}px`;
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', moveSquareByKey);
+    </script>
+</body>
+</html>
+

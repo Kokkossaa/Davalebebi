@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Photo Chooser</title>
+</head>
+<body>
+
+<button id="chooseButton" onclick="chooseRandomPhoto()">Choose Random Photo</button>
+<img id="displayedImage" src="" alt="Random Photo">
+
+<script>
+    function chooseRandomPhoto() {
+        var photoArray = ['foto.jpg', 'foto1.jpg', 'foto.jpg', 'foto.jpg', 'foto.jpg', 'foto.jpg', 'foto.jpg', 'foto.jpg', 'foto.jpg', 'foto.jpg'];
+
+        var randomIndex = Math.floor(Math.random() * photoArray.length);
+
+        var chosenPhoto = photoArray[randomIndex];
+        document.getElementById("displayedImage").src = chosenPhoto;
+        document.getElementById("displayedImage").alt = "Random Photo";
+    }
+</script>
+
+</body>
+</html>

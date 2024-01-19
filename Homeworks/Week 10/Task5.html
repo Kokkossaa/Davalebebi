@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        #soccerField {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            margin: 10vh auto;
+            background-color: #d3d3d3;
+            border: 5px solid #808080;
+        }
+
+        #soccerBall {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="soccerField">
+        <div id="soccerBall"></div>
+    </div>
+
+    <script>
+        const soccerBall = document.getElementById('soccerBall');
+        const step = 10; 
+
+        function moveSoccerBallByKey(e) {
+            const currentLeft = parseFloat(soccerBall.style.left) || 0;
+            const currentTop = parseFloat(soccerBall.style.top) || 0;
+
+            switch (e.key) {
+                case 'ArrowUp':
+                    soccerBall.style.top = `${Math.max(0, currentTop - step)}px`;
+                    break;
+                case 'ArrowDown':
+                    soccerBall.style.top = `${Math.min(280, currentTop + step)}px`;
+                    break;
+                case 'ArrowLeft':
+                    soccerBall.style.left = `${Math.max(0, currentLeft - step)}px`;
+                    break;
+                case 'ArrowRight':
+                    soccerBall.style.left = `${Math.min(480, currentLeft + step)}px`;
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', moveSoccerBallByKey);
+    </script>
+</body>
+</html>

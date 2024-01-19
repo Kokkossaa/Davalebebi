@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form id="registrationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+
+        <label for="idNumber">ID Number:</label>
+        <input type="text" id="idNumber" name="idNumber">
+
+        <label for="registrationDate">Date of Registration:</label>
+        <input type="text" id="registrationDate" name="registrationDate" readonly>
+
+        <label for="email">E-mail:</label>
+        <input type="text" id="email" name="email">
+
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <script>
+        function isEmpty(value) {
+            return value.trim() === '';
+        }
+
+        function validateIDNumber(idNumber) {
+            return /^\d{11}$/.test(idNumber);
+        }
+
+        function setCurrentDate() {
+            const currentDate = new Date();
+            const formattedDate = `${currentDate.getDate()}:${currentDate.getMonth() + 1}:${currentDate.getFullYear()}`;
+            document.getElementById('registrationDate').value = formattedDate;
+        }
+
+        function validateEmail(email) {
+            return email.includes('@');
+        }
+
+        function displayErrorMessage(field, message) {
+            const errorMessageElement = document.createElement('p');
+            errorMessageElement.className = 'error-message';
+            errorMessageElement.textContent = message;
+
+            const inputElement = document.getElementById(field);
+            inputElement.parentNode.appendChild(errorMessageElement);
+        }
+
+        function clearErrorMessages() {
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(errorMessage => errorMessage.remove());
+        }
+
+        function validateForm() {
+            clearErrorMessages();
+
+            const name = document.getElementById('name').value;
+            const lastName = document.getElementById('lastName').value;
+            const idNumber = document.getElementById('idNumber').value;
+            const email = document.getElementById('email').value;
+
+            if (isEmpty(name)) {
+                displayErrorMessage('name', 'Name cannot be empty');
+            }
+
+            if (isEmpty(lastName)) {
+                displayErrorMessage('lastName', 'Last Name cannot be empty');
+            }
+
+            if (!validateIDNumber(idNumber)) {
+                displayErrorMessage('idNumber', 'ID Number must consist of 11 digits');
+            }
+
+            setCurrentDate();
+
+            if (!validateEmail(email)) {
+                displayErrorMessage('email', 'E-mail must contain the "@" symbol');
+            }
+        }
+    </script>
+</body>
+</html>

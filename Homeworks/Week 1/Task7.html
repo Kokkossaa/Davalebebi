@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Table Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="tableColor">Table Background Color:</label>
+        <input type="color" id="tableColor" value="#ffffff">
+        <button onclick="generateTable()">Generate Table</button>
+    </div>
+
+    <div id="tableContainer"></div>
+
+    <script>
+        function generateTable() {
+            const tableColorInput = document.getElementById('tableColor');
+            const tableColor = tableColorInput.value;
+
+            document.getElementById('tableContainer').innerHTML = '';
+
+            const table = document.createElement('table');
+
+            for (let i = 0; i < 2; i++) {
+                const row = table.insertRow();
+
+                for (let j = 0; j < 2; j++) {
+                    const cell = row.insertCell();
+                    cell.textContent = `Row ${i + 1}, Col ${j + 1}`;
+                }
+            }
+
+            table.style.backgroundColor = tableColor;
+
+            document.getElementById('tableContainer').appendChild(table);
+        }
+    </script>
+</body>
+</html>

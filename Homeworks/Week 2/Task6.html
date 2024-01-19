@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<button id="generateButton" onclick="generateRandomNumber()">Generate Random Number</button>
+<p id="result"></p>
+
+<script>
+    function generateRandomNumber() {
+        var randomNumber = Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+        
+        document.getElementById("result").innerText = "Random Number: " + randomNumber;
+    }
+</script>
+
+</body>
+</html>
